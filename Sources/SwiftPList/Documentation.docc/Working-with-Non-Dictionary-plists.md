@@ -1,6 +1,6 @@
 # Working with Non-Dictionary plists
 
-<!--@START_MENU_TOKEN@-->Summary<!--@END_MENU_TOKEN@-->
+An overview of working with non-Dictionary-rooted plists.
 
 ## Creating a plist with a non-dictionary root
 
@@ -38,12 +38,12 @@ There are two ways to load a plist with a non-dictionary root.
 
 - When the root type is unknown ahead of time:
 
-  The type-erased ``AnyPList`` can be used to load a plist. You are then able to determine what the root type is by unwrapping its ``AnyPList/plist`` property.
+  The type-erased ``AnyPList`` can be used to load a plist. You are then able to determine what the root type is by unwrapping it.
 
   ```swift
   let anyPList = AnyPList(file: "/Users/user/Desktop/file.plist")
   
-  switch anyPList.plist {
+  switch anyPList {
   case .dictionaryRoot(let dictPList):
       // dictPList == DictionaryPList instance
   case .arrayRoot(let arrayPList):
@@ -59,4 +59,3 @@ There are two ways to load a plist with a non-dictionary root.
 ### Root Type Erasure
 
 - ``AnyPList``
-- ``WrappedPList``

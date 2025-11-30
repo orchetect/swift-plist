@@ -23,7 +23,7 @@ When you do not know the root element type ahead of time and cannot be sure it i
 ```swift
 let anyPList = try AnyPList(file: "/Users/user/Desktop/file.plist")
 
-switch anyPList.plist {
+switch anyPList {
 case .dictionaryRoot(let plist):
     // plist is DictionaryPList
 case .arrayRoot(let plist):
