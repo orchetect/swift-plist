@@ -4,24 +4,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "PListKit",
+    name: "swift-plist",
     platforms: [
         .macOS(.v10_10), .iOS(.v9), .tvOS(.v9), .watchOS(.v2)
     ],
     products: [
         .library(
-            name: "PListKit",
-            targets: ["PListKit"]
+            name: "SwiftPList",
+            targets: ["SwiftPList"]
         )
     ],
     targets: [
         .target(
-            name: "PListKit",
-            dependencies: []
+            name: "SwiftPList"
         ),
         .testTarget(
-            name: "PListKitTests",
-            dependencies: ["PListKit"]
+            name: "SwiftPListTests",
+            dependencies: ["SwiftPList"]
         )
     ]
 )
