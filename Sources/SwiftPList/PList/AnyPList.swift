@@ -14,13 +14,15 @@ import Foundation
 ///
 /// See <doc:Load-a-plist-file-from-disk> and <doc:Working-with-Non-Dictionary-plists> for details
 /// on using `AnyPList`.
-public struct AnyPList {
-    /// Contains a specialized ``PList`` instance.
-    public let plist: WrappedPList
-    
-    init(wrapped: WrappedPList) {
-        plist = wrapped
-    }
+public enum AnyPList {
+    case dictionaryRoot(DictionaryPList)
+    case arrayRoot(ArrayPList)
+    case boolRoot(PList<Bool>)
+    case stringRoot(PList<String>)
+    case intRoot(PList<Int>)
+    case doubleRoot(PList<Double>)
+    case dateRoot(PList<Date>)
+    case dataRoot(PList<Data>)
     
     /// Instantiate a plist object by loading a plist file from disk.
     ///
@@ -62,40 +64,28 @@ public struct AnyPList {
     ///
     /// - throws: ``PListLoadError``
     public init(data: Data) throws {
-        let deserialized = try data.deserializeToWrappedPList()
-        plist = deserialized.wrappedPlist
+        self = try data.deserializeToAnyPList().anyPlist
     }
     
     // MARK: - Proxy methods
     
     #if swift(>=5.7)
     /// Data format of the plist when saved to disk.
-    /* public */ var format: PListFormat {
-        plist.unwrapped().format
+    var format: PListFormat {
+        unwrapped().format
     }
     
     /// Returns the raw plist content.
     /// If there is an error, an exception will be thrown.
-    /* public */ func rawData(
-        format: PListFormat?
-    ) throws -> Data {
-        try plist.unwrapped().rawData(format: format)
+    func rawData(format: PListFormat?) throws -> Data {
+        try unwrapped().rawData(format: format)
     }
     #endif
 }
 
 /// Cases containing a strongly-typed specialized ``PList`` instance.
 /// Unwrap the strongly-typed plist root object using a switch case.
-public enum WrappedPList {
-    case dictionaryRoot(DictionaryPList)
-    case arrayRoot(ArrayPList)
-    case boolRoot(PList<Bool>)
-    case stringRoot(PList<String>)
-    case intRoot(PList<Int>)
-    case doubleRoot(PList<Double>)
-    case dateRoot(PList<Date>)
-    case dataRoot(PList<Data>)
-    
+extension AnyPList {
     // MARK: Internal helper methods
     
     #if swift(>=5.7)

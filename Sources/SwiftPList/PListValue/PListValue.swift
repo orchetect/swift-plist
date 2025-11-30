@@ -116,7 +116,7 @@ func convertToPListValue(from object: Any) -> PListValue? {
     }
 }
 
-func convertToWrappedPList(root object: Any, format: PListFormat) -> WrappedPList? {
+func convertToAnyPList(root object: Any, format: PListFormat) -> AnyPList? {
     // TODO: type(of:) is a workaround to test for a boolean type,
     // since testing for NSNumber's boolValue constants is tricky in Swift
     // this may be a computationally expensive operation, so ideally it should be replaced with a

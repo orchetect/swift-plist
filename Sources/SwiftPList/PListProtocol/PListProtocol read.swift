@@ -71,9 +71,9 @@ extension Data {
         )
     }
     
-    func deserializeToWrappedPList() throws -> (
+    func deserializeToAnyPList() throws -> (
         format: PListFormat,
-        wrappedPlist: WrappedPList
+        anyPlist: AnyPList
     ) {
         // this is not determining the format, it just needs to be initialized to *some*
         // value so that `PropertyListSerialization.propertyList` can mutate it.
@@ -85,13 +85,13 @@ extension Data {
             format: &getFormat
         )
         
-        guard let converted = convertToWrappedPList(root: plistRoot, format: getFormat) else {
+        guard let converted = convertToAnyPList(root: plistRoot, format: getFormat) else {
             throw PListLoadError.formatNotExpected
         }
         
         return (
             format: getFormat,
-            wrappedPlist: converted
+            anyPlist: converted
         )
     }
 }
