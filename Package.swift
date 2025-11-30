@@ -1,6 +1,7 @@
 // swift-tools-version:5.5
 // (be sure to update the .swift-version file when this Swift version changes)
 
+import Foundation
 import PackageDescription
 
 let package = Package(
@@ -14,6 +15,7 @@ let package = Package(
             targets: ["SwiftPList"]
         )
     ],
+    dependencies: [],
     targets: [
         .target(
             name: "SwiftPList"
@@ -24,3 +26,10 @@ let package = Package(
         )
     ]
 )
+
+/// Conditionally opt-in to Swift DocC Plugin when an environment flag is present.
+if ProcessInfo.processInfo.environment["ENABLE_DOCC_PLUGIN"] != nil {
+    package.dependencies += [
+        .package(url: "https://github.com/apple/swift-docc-plugin.git", from: "1.4.5")
+    ]
+}
