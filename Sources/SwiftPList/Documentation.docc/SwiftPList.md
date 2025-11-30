@@ -28,8 +28,8 @@ swift-plist solves these issues by:
 - <doc:Load-a-plist-file-from-disk>
 - <doc:Working-with-DictionaryPList>
 - <doc:Working-with-Non-Dictionary-plists>
-- <doc:Property-List-Formats>
+- <doc:Property-List-Formats> 
 
-### Internals
+### Library Internals
 
 - <doc:Internals>

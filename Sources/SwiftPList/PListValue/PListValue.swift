@@ -16,45 +16,55 @@ public protocol PListValue {
 // MARK: - Concrete Type Conformances
 
 extension String: PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { "" }
 }
 
 extension Int: PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { 0 }
 }
 
 extension Double: PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { 0.0 }
 }
 
 extension Bool: PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { false }
 }
 
 extension Date: PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { Date() }
 }
 
 extension Data: PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { Data() }
 }
 
 #if swift(>=5.7)
 extension Dictionary: PListValue where Key == String, Value == any PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { [:] }
 }
 #else
 extension Dictionary: PListValue where Key == String, Value == PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { [:] }
 }
 #endif
 
 #if swift(>=5.7)
 extension Array: PListValue where Element == any PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { [] }
 }
 #else
 extension Array: PListValue where Element == PListValue {
+    @_documentation(visibility: internal)
     public static func defaultPListValue() -> Self { [] }
 }
 #endif

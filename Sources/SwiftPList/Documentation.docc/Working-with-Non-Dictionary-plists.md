@@ -41,9 +41,9 @@ There are two ways to load a plist with a non-dictionary root.
   The type-erased ``AnyPList`` can be used to load a plist. You are then able to determine what the root type is by unwrapping its ``AnyPList/plist`` property.
 
   ```swift
-  let pl = AnyPList(file: "/Users/user/Desktop/file.plist")
+  let anyPList = AnyPList(file: "/Users/user/Desktop/file.plist")
   
-  switch pl.plist {
+  switch anyPList.plist {
   case .dictionaryRoot(let dictPList):
       // dictPList == DictionaryPList instance
   case .arrayRoot(let arrayPList):

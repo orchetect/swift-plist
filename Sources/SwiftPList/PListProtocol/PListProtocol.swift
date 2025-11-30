@@ -55,7 +55,7 @@ public protocol PListProtocol {
     
     /// Instantiate a plist object by loading a plist file from disk.
     ///
-    /// - parameter file: An absolute file path.
+    /// - parameter path: An absolute file path.
     ///
     /// - throws: ``PListLoadError``
     init(file path: String) throws
@@ -72,7 +72,7 @@ public protocol PListProtocol {
     
     /// Instantiate a plist object from raw plist XML.
     ///
-    /// - parameter xml: Source plist raw XML as `String`.
+    /// - parameter string: Source plist raw XML as `String`.
     ///
     /// - throws: ``PListLoadError``
     init(xml string: String) throws

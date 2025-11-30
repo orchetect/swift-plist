@@ -16,8 +16,3 @@ Types used internally.
 ### DictionaryPList Nodes
 
 - ``PList/PListNode``
-
-### API Changes
-
-- ``PList/RawArray``
-- ``PList/RawDictionary``

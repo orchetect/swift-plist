@@ -21,9 +21,9 @@ let plist = try DictionaryPList(file: "/Users/user/Desktop/file.plist")
 When you do not know the root element type ahead of time and cannot be sure it is a dictionary, use ``AnyPList`` to load the plist and then unwrap it to get the ``PList`` class specialized to its root element type.
 
 ```swift
-let anyPL = try AnyPList(file: "/Users/user/Desktop/file.plist")
+let anyPList = try AnyPList(file: "/Users/user/Desktop/file.plist")
 
-switch anyPL.plist {
+switch anyPList.plist {
 case .dictionaryRoot(let plist):
     // plist is DictionaryPList
 case .arrayRoot(let plist):

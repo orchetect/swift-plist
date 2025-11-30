@@ -9,9 +9,9 @@ import Foundation
 extension PListProtocol {
     /// Save the PList file to disk, overwriting without confirmation.
     ///
-    /// - parameter toFile: An absolute or relative file path.
-    /// - parameter format: Data format on disk when saving.
-    ///
+    /// - Parameters:
+    ///   - path: An absolute or relative file path.
+    ///   - format: Data format on disk when saving.
     public func save(
         toFileAtPath path: String,
         format: PListFormat? = nil
@@ -26,9 +26,9 @@ extension PListProtocol {
     
     /// Save the PList file to disk, overwriting without confirmation.
     ///
-    /// - parameter toURL: A full file URL.
-    /// - parameter format: Data format on disk when saving.
-    ///
+    /// - Parameters:
+    ///   - url: A full file URL.
+    ///   - format: Data format on disk when saving.
     public func save(
         toFileAtURL url: URL,
         format: PListFormat? = nil
