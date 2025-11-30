@@ -44,11 +44,3 @@ extension RawPListDictionary {
         return newDict
     }
 }
-
-// MARK: - API Changes in 2.0.0
-
-extension PList {
-    /// This type has been renamed to ``RawPListDictionary``.
-    @available(*, deprecated, renamed: "RawPListDictionary")
-    public typealias RawDictionary = RawPListDictionary
-}
