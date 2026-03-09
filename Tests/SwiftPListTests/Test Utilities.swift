@@ -97,6 +97,13 @@ extension URL {
         try __delFile(url: self)
         return nil
         
+        #elseif os(visionOS)
+        
+        // visionOS has no Trash - just delete the file
+        
+        try __delFile(url: self)
+        return nil
+        
         #endif
     }
 }
