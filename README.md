@@ -1,6 +1,6 @@
 # swift-plist
 
-[![Platforms - macOS 10.10+ | iOS 9+ | tvOS 9+ | watchOS 2+ | visionOS 1+](https://img.shields.io/badge/platforms-macOS%2010.10+%20|%20iOS%209+%20|%20tvOS%209+%20|%20watchOS%202+%20|%20visionOS%201+-lightgrey.svg?style=flat)](https://developer.apple.com/swift) ![Swift 5.3-6.2](https://img.shields.io/badge/Swift-5.5–6.2-orange.svg?style=flat) [![Xcode 13-26](https://img.shields.io/badge/Xcode-13–26-blue.svg?style=flat)](https://developer.apple.com/swift) [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/orchetect/swift-plist/blob/main/LICENSE)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2Fswift-plist%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/orchetect/swift-plist) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2Fswift-plist%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/orchetect/swift-plist) [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/orchetect/swift-plist/blob/main/LICENSE)
 
 A multi-platform Swift library bringing functional methods and type safety to .plist (Property List) files.
 
