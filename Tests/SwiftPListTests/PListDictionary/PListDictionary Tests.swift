@@ -1,7 +1,7 @@
 //
 //  PListDictionary Tests.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import SwiftPList
@@ -11,9 +11,9 @@ final class PListDictionary_Tests: XCTestCase {
     func testSubscriptGetters() {
         // custom dictionary key subscripts still returns an Optional,
         // but it also conditionally types the element
-        
+
         let date = Date()
-        
+
         let plistDict: PListDictionary = [
             "a": "String value",
             "b": 1,
@@ -24,7 +24,7 @@ final class PListDictionary_Tests: XCTestCase {
             "g": ["Array String", 123],
             "h": ["DictKey1": "Dict string value"]
         ]
-        
+
         // key "a"
         XCTAssertEqual(plistDict[string: "a"], "String value")
         XCTAssertEqual(plistDict[int: "a"], nil)
@@ -36,7 +36,7 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssert(plistDict[dict: "a"] == nil)
         XCTAssertNil(plistDict[array: "a"]) // alternate XCT syntax
         XCTAssertNil(plistDict[dict: "a"]) // alternate XCT syntax
-        
+
         // key "b"
         XCTAssertEqual(plistDict[string: "b"], nil)
         XCTAssertEqual(plistDict[int: "b"], 1)
@@ -46,7 +46,7 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertEqual(plistDict[data: "b"], nil)
         XCTAssert(plistDict[array: "b"] == nil)
         XCTAssert(plistDict[dict: "b"] == nil)
-        
+
         // key "c"
         XCTAssertEqual(plistDict[string: "c"], nil)
         XCTAssertEqual(plistDict[int: "c"], nil)
@@ -56,7 +56,7 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertEqual(plistDict[data: "c"], nil)
         XCTAssert(plistDict[array: "c"] == nil)
         XCTAssert(plistDict[dict: "c"] == nil)
-        
+
         // key "d"
         XCTAssertEqual(plistDict[string: "d"], nil)
         XCTAssertEqual(plistDict[int: "d"], nil)
@@ -66,7 +66,7 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertEqual(plistDict[data: "d"], nil)
         XCTAssert(plistDict[array: "d"] == nil)
         XCTAssert(plistDict[dict: "d"] == nil)
-        
+
         // key "e"
         XCTAssertEqual(plistDict[string: "e"], nil)
         XCTAssertEqual(plistDict[int: "e"], nil)
@@ -76,7 +76,7 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertEqual(plistDict[data: "e"], nil)
         XCTAssert(plistDict[array: "e"] == nil)
         XCTAssert(plistDict[dict: "e"] == nil)
-        
+
         // key "f"
         XCTAssertEqual(plistDict[string: "f"], nil)
         XCTAssertEqual(plistDict[int: "f"], nil)
@@ -86,7 +86,7 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertEqual(plistDict[data: "f"], Data([1, 2, 3]))
         XCTAssert(plistDict[array: "f"] == nil)
         XCTAssert(plistDict[dict: "f"] == nil)
-        
+
         // key "g"
         XCTAssertEqual(plistDict[string: "g"], nil)
         XCTAssertEqual(plistDict[int: "g"], nil)
@@ -97,7 +97,7 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertEqual(plistDict[array: "g"]?[string: 0], "Array String")
         XCTAssertEqual(plistDict[array: "g"]?[int: 1], 123)
         XCTAssert(plistDict[dict: "g"] == nil)
-        
+
         // key "h"
         XCTAssertEqual(plistDict[string: "h"], nil)
         XCTAssertEqual(plistDict[int: "h"], nil)
@@ -107,7 +107,7 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertEqual(plistDict[data: "h"], nil)
         XCTAssert(plistDict[array: "h"] == nil)
         XCTAssertEqual(plistDict[dict: "h"]?[string: "DictKey1"], "Dict string value")
-        
+
         // key "i" - doesn't exist; should return nil and not crash
         XCTAssertEqual(plistDict[string: "i"], nil)
         XCTAssertEqual(plistDict[int: "i"], nil)
@@ -118,14 +118,14 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssert(plistDict[array: "i"] == nil)
         XCTAssert(plistDict[dict: "i"] == nil)
     }
-    
+
     func testSubscriptGetterAny() throws {
         var plistDict = try kSamplePList.DictRootAllValues.XML.plist().storage
-        
+
         let val = plistDict[any: "TestString"]
-        
+
         // type check
-        
+
         XCTAssertTrue(val is String)
         XCTAssertFalse(val is Int)
         XCTAssertFalse(val is Double)
@@ -134,44 +134,44 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertFalse(val is Data)
         XCTAssertFalse(val is PListArray)
         XCTAssertFalse(val is PListDictionary)
-        
+
         XCTAssertEqual(val as? String, "A string value")
-        
+
         // set
-        
+
         plistDict[any: "TestAny"] = 123
         XCTAssertEqual(plistDict[any: "TestAny"] as? Int, 123)
-        
+
         plistDict[any: "TestAny"] = "A new string"
         XCTAssertEqual(plistDict[any: "TestAny"] as? String, "A new string")
     }
-    
+
     func testMutation() {
         // PListDictionary?, aka: Dictionary<String, PListValue>
-        
+
         let pl = DictionaryPList()
-        
+
         XCTAssertNil(pl.storage[dict: "TestDict"])
-        
+
         // won't create the dict, so fails to create string key
         pl.storage[dict: "TestDict"]?[string: "DictString"] = "Dictionary string"
         XCTAssertNil(pl.storage[dict: "TestDict"]?[string: "DictString"])
-        
+
         // creates the dict and the string key
         pl.storage[dictCreate: "TestDict"]?[string: "DictString"] = "Dictionary string"
         XCTAssertEqual(pl.storage[dict: "TestDict"]?[string: "DictString"], "Dictionary string")
-        
+
         // create nested dict
         pl.storage[dict: "TestDict"]?[dict: "NestedDict"] = [:]
         XCTAssertNotNil(pl.storage[dict: "TestDict"]?[dict: "NestedDict"])
-        
+
         pl.storage[dict: "TestDict"]?[dict: "NestedDict"]?[string: "NestedString"] =
             "A nested string"
         XCTAssertEqual(
             pl.storage[dict: "TestDict"]?[dict: "NestedDict"]?[string: "NestedString"],
             "A nested string"
         )
-        
+
         // copy dict
         pl.storage[dict: "TestDict2"] = pl.storage[dict: "TestDict"]
         XCTAssertNotNil(pl.storage[dict: "TestDict2"])
@@ -179,7 +179,7 @@ final class PListDictionary_Tests: XCTestCase {
             pl.storage[dict: "TestDict2"]?[dict: "NestedDict"]?[string: "NestedString"],
             "A nested string"
         )
-        
+
         // get keys
         XCTAssertEqual(pl.storage[dict: "TestDict"]?.getStringKeys.first, "DictString")
         XCTAssertNil(pl.storage[dict: "TestDict"]?.getIntKeys.first)
@@ -189,7 +189,7 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertNil(pl.storage[dict: "TestDict"]?.getDataKeys.first)
         XCTAssertNil(pl.storage[dict: "TestDict"]?.getArrayKeys.first)
         XCTAssertEqual(pl.storage[dict: "TestDict"]?.getDictionaryKeys.first, "NestedDict")
-        
+
         // get key pairs
         XCTAssertEqual(
             pl.storage[dict: "TestDict"]?.getStringKeyPairs,
@@ -200,25 +200,25 @@ final class PListDictionary_Tests: XCTestCase {
         XCTAssertEqual(pl.storage[dict: "TestDict"]?.getBoolKeyPairs, [:])
         XCTAssertEqual(pl.storage[dict: "TestDict"]?.getDateKeyPairs, [:])
         XCTAssertEqual(pl.storage[dict: "TestDict"]?.getDataKeyPairs, [:])
-        
+
         let getArrayPairs = pl.storage[dict: "TestDict"]?.getArrayKeyPairs
         XCTAssertEqual(getArrayPairs?.count, 0)
-        
+
         let getDictPairs = pl.storage[dict: "TestDict"]?.getDictionaryKeyPairs
         XCTAssertEqual(getDictPairs?.count, 1)
         XCTAssertEqual(getDictPairs?.first?.key, "NestedDict")
         let nestedDict = pl.storage[dict: "TestDict"]?[dict: "NestedDict"]
         XCTAssertEqual(nestedDict?.first?.key, "NestedString")
         XCTAssertEqual(nestedDict?.first?.value as? String, "A nested string")
-        
+
         // delete dict
         pl.storage[dict: "TestDict"] = nil
         XCTAssertNil(pl.storage[dict: "TestDict"])
     }
-    
+
     func testRawPListDictionary_convertedToPListDictionary() {
         let dict: RawPListDictionary = ["A key" as NSString: 123 as NSNumber]
-        
+
         let newDict: PListDictionary? = dict.convertedToPListDictionary()
         XCTAssertNotNil(newDict)
         XCTAssertEqual(newDict?.count, 1)

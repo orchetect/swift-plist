@@ -1,7 +1,7 @@
 //
 //  ArrayPList.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -34,7 +34,7 @@ extension ArrayPList {
         guard let converted = root.convertedToPListArray() else {
             throw PListLoadError.formatNotExpected
         }
-        
+
         self.init(root: converted, format: format)
     }
 }

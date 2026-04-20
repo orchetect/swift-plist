@@ -1,7 +1,7 @@
 //
 //  PListDictionary Subscripts.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -25,7 +25,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSNumber
     public subscript(int key: String) -> Int? {
         get {
@@ -40,7 +40,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSNumber
     public subscript(double key: String) -> Double? {
         get {
@@ -48,12 +48,12 @@ extension PListDictionary {
             if let tryDouble = self[key] as? Double {
                 return tryDouble
             }
-            
+
             // otherwise see if there is an Int that can be read as a Double
             if let tryInt = self[key] as? Int {
                 return Double(exactly: tryInt)
             }
-            
+
             return nil
         }
         set {
@@ -65,7 +65,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSCFBoolean / NSNumber boolValue
     public subscript(bool key: String) -> Bool? {
         get {
@@ -80,7 +80,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSDate
     public subscript(date key: String) -> Date? {
         get {
@@ -95,7 +95,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSData
     public subscript(data key: String) -> Data? {
         get {
@@ -110,7 +110,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     /// Get: Access any key's value without prior knowledge of its type. You must then test for its
     /// type afterwards to determine what type it is.
     /// Set: Set a key's value, identical to setting the standard subscript `self[] =`.
@@ -127,7 +127,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     // Internal type: Array<AnyObject> (ordered)
     public subscript(array key: String) -> PListArray? {
         get {
@@ -142,7 +142,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     // if key exists and it's an array, return it. if key does not exist, create new array and
     // return it. if key exists but it's not an array, return nil.
     // Internal type: Array<AnyObject> (ordered)
@@ -151,11 +151,11 @@ extension PListDictionary {
             if self[key] != nil { // key exists, but we're not sure it's an array yet
                 return self[array: key] // if it's an array, return it
             }
-            
+
             // key does not exist, so let's create it as a new array and return it
-            
+
             self[key] = PListArray()
-            
+
             return self[array: key]
         }
         set {
@@ -167,7 +167,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     // if key exists and it's a dictionary, return it. otherwise return nil.
     // Internal type: Dictionary<NSObject, AnyObject>
     public subscript(dict key: String) -> PListDictionary? {
@@ -187,7 +187,7 @@ extension PListDictionary {
             self[key] = value
         }
     }
-    
+
     // if key exists and it's a dictionary, return it. if key does not exist, create new dictionary
     // and return it. if key exists but it's not a dictionary, return nil.
     // Internal type: Dictionary<NSObject, AnyObject>
@@ -196,11 +196,11 @@ extension PListDictionary {
             if self[key] != nil { // key exists, but we're not sure it's a dictionary yet
                 return self[dict: key] // if it's a dictionary, return it
             }
-            
+
             // key does not exist, so let's create it as a new dictionary and return it
-            
+
             self[key] = PListDictionary()
-            
+
             return self[dict: key]
         }
         set {
@@ -219,7 +219,7 @@ extension PListDictionary {
 #else
 
 /// aka extension PListDictionary
-extension Dictionary where Key == String, Value == PListValue {
+extension [String: PListValue] {
     // Internal type: NSString
     public subscript(string key: String) -> String? {
         get {
@@ -234,7 +234,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSNumber
     public subscript(int key: String) -> Int? {
         get {
@@ -249,7 +249,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSNumber
     public subscript(double key: String) -> Double? {
         get {
@@ -257,12 +257,12 @@ extension Dictionary where Key == String, Value == PListValue {
             if let tryDouble = self[key] as? Double {
                 return tryDouble
             }
-            
+
             // otherwise see if there is an Int that can be read as a Double
             if let tryInt = self[key] as? Int {
                 return Double(exactly: tryInt)
             }
-            
+
             return nil
         }
         set {
@@ -274,7 +274,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSCFBoolean / NSNumber boolValue
     public subscript(bool key: String) -> Bool? {
         get {
@@ -289,7 +289,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSDate
     public subscript(date key: String) -> Date? {
         get {
@@ -304,7 +304,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     // Internal type: NSData
     public subscript(data key: String) -> Data? {
         get {
@@ -319,7 +319,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     /// Get: Access any key's value without prior knowledge of its type. You must then test for its
     /// type afterwards to determine what type it is.
     /// Set: Set a key's value, identical to setting the standard subscript `self[] =`.
@@ -336,7 +336,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     // Internal type: Array<AnyObject> (ordered)
     public subscript(array key: String) -> PListArray? {
         get {
@@ -351,7 +351,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     // if key exists and it's an array, return it. if key does not exist, create new array and
     // return it. if key exists but it's not an array, return nil.
     // Internal type: Array<AnyObject> (ordered)
@@ -360,11 +360,11 @@ extension Dictionary where Key == String, Value == PListValue {
             if self[key] != nil { // key exists, but we're not sure it's an array yet
                 return self[array: key] // if it's an array, return it
             }
-            
+
             // key does not exist, so let's create it as a new array and return it
-            
+
             self[key] = PListArray()
-            
+
             return self[array: key]
         }
         set {
@@ -376,7 +376,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     // if key exists and it's a dictionary, return it. otherwise return nil.
     // Internal type: Dictionary<NSObject, AnyObject>
     public subscript(dict key: String) -> PListDictionary? {
@@ -396,7 +396,7 @@ extension Dictionary where Key == String, Value == PListValue {
             self[key] = value
         }
     }
-    
+
     // if key exists and it's a dictionary, return it. if key does not exist, create new dictionary
     // and return it. if key exists but it's not a dictionary, return nil.
     // Internal type: Dictionary<NSObject, AnyObject>
@@ -405,11 +405,11 @@ extension Dictionary where Key == String, Value == PListValue {
             if self[key] != nil { // key exists, but we're not sure it's a dictionary yet
                 return self[dict: key] // if it's a dictionary, return it
             }
-            
+
             // key does not exist, so let's create it as a new dictionary and return it
-            
+
             self[key] = PListDictionary()
-            
+
             return self[dict: key]
         }
         set {

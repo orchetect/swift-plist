@@ -1,7 +1,7 @@
 //
 //  PListLoadError.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 /// Error returned by ``PList`` methods which read file contents.

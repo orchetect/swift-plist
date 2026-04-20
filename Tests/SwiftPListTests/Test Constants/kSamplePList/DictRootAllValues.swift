@@ -1,7 +1,7 @@
 //
 //  DictRootAllValues.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 // swiftformat:options --wrapcollections preserve
@@ -59,7 +59,7 @@ extension kSamplePList.DictRootAllValues {
             </dict>
             </plist>
             """
-    
+
         static func plist() throws -> ConcretePList {
             let data = try XCTUnwrap(raw.data(using: .utf8))
             return try ConcretePList(data: data)
@@ -71,6 +71,8 @@ extension kSamplePList.DictRootAllValues {
 
 extension kSamplePList.DictRootAllValues {
     enum Binary {
+        // swiftformat:options --wrap-collections preserve
+        // swiftformat:options --allow-partial-wrapping true
         static let raw: [UInt8] = [
             0x62, 0x70, 0x6C, 0x69, 0x73, 0x74, 0x30, 0x30,
             0xD9, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
@@ -123,7 +125,9 @@ extension kSamplePList.DictRootAllValues {
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x01, 0x30
         ]
-    
+        // swiftformat:options --wrap-collections before-first
+        // swiftformat:options --allow-partial-wrapping false
+
         static func plist() throws -> ConcretePList {
             let data = Data(raw)
             return try ConcretePList(data: data)
@@ -137,7 +141,7 @@ extension kSamplePList.DictRootAllValues {
     static func verify(matches pl: ConcretePList) {
         // sample plist has 9 root-level keys
         XCTAssertEqual(pl.storage.count, 9)
-        
+
         XCTAssertEqual(
             pl.storage[array: "TestArray"]?.count,
             2
@@ -150,7 +154,7 @@ extension kSamplePList.DictRootAllValues {
             pl.storage[array: "TestArray"]?[1] as? Int,
             999
         )
-        
+
         XCTAssertEqual(
             pl.storage[dict: "TestDict"]?.count,
             2
@@ -177,32 +181,32 @@ extension kSamplePList.DictRootAllValues {
             ],
             "A nested string value"
         )
-        
+
         XCTAssertEqual(
             pl.storage[bool: "TestBool"],
             true
         )
-        
+
         XCTAssertEqual(
             pl.storage[data: "TestData"],
             Data([0x00, 0xFF])
         )
-        
+
         XCTAssertEqual(
             pl.storage[date: "TestDate"],
             Date(timeIntervalSince1970: 1_527_904_054.0)
         )
-        
+
         XCTAssertEqual(
             pl.storage[double: "TestDouble"],
             456.789
         )
-        
+
         XCTAssertEqual(
             pl.storage[int: "TestInt"],
             234
         )
-        
+
         XCTAssertEqual(
             pl.storage[string: "TestString"],
             "A string value"

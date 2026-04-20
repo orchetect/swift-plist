@@ -1,7 +1,7 @@
 //
 //  Test Utilities.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -49,20 +49,20 @@ extension URL {
     @discardableResult
     func trashOrDelete() throws -> URL? {
         // funcs
-        
+
         func __delFile(url: URL) throws {
             try FileManager.default.removeItem(at: url)
         }
-        
+
         // platform-specific logic
-        
+
         #if os(macOS) || targetEnvironment(macCatalyst) || os(iOS)
-        
+
         if #available(macOS 10.8, iOS 11.0, *) {
             // move file to trash
-            
+
             var resultingURL: NSURL?
-            
+
             do {
                 try FileManager.default.trashItem(at: self, resultingItemURL: &resultingURL)
             } catch {
@@ -73,37 +73,37 @@ extension URL {
                 return nil
                 #endif
             }
-            
+
             return resultingURL?.absoluteURL
-            
+
         } else {
             // OS version requirements not met - delete file as a fallback
-            
+
             try __delFile(url: self)
             return nil
         }
-        
+
         #elseif os(tvOS)
-        
+
         // tvOS has no Trash - just delete the file
-        
+
         try __delFile(url: self)
         return nil
-        
+
         #elseif os(watchOS)
-        
+
         // watchOS has no Trash - just delete the file
-        
+
         try __delFile(url: self)
         return nil
-        
+
         #elseif os(visionOS)
-        
+
         // visionOS has no Trash - just delete the file
-        
+
         try __delFile(url: self)
         return nil
-        
+
         #endif
     }
 }

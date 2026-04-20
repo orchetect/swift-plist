@@ -1,7 +1,7 @@
 //
 //  DictionaryPList Array Set Tests.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import SwiftPList
@@ -9,11 +9,11 @@ import XCTest
 
 final class DictionaryPList_ArraySet_Tests: XCTestCase {
     /// Test to deal with an edge case where setting an Array as a Dictionary key's value as would fail.
-    /// 
+    ///
     /// GitHub Issue: https://github.com/orchetect/swift-plist/discussions/9
     func testArrayReplacementWithinDictionary() throws {
         let plist = try DictionaryPList(xml: plistContent)
-        
+
         func getDriversArray() -> [PListDictionary]? {
             plist.root
                 .dict(key: "TestDic")
@@ -21,42 +21,42 @@ final class DictionaryPList_ArraySet_Tests: XCTestCase {
                 .value?
                 .compactMap { $0 as? PListDictionary }
         }
-        
+
         var driversArray = try XCTUnwrap(getDriversArray())
-        
+
         // mutate copied array
-        
+
         for index in driversArray.indices {
             if driversArray[index][string: "A"] == "B" {
                 driversArray[index]["A"] = "flags"
             }
         }
         driversArray[1]["A"] = "BB"
-        
+
         // re-assign new mutated array in place of the old one in the plist
-        
+
         plist.root
             .dict(key: "TestDic")
             .array(key: "TestArr")
             .value = driversArray
-        
+
         // diagnostic output
-        
+
         // dump(
         //     plist.root
         //         .dict(key: "TestDic")
         //         .array(key: "TestArr")
         //         .value
         // )
-        
+
         let newDriversArray = try XCTUnwrap(getDriversArray())
-        
+
         XCTAssertEqual(newDriversArray[0][string: "A"], "flags")
         XCTAssertEqual(newDriversArray[1][string: "A"], "BB")
     }
 }
 
-fileprivate let plistContent: String = """
+private let plistContent: String = """
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
     <plist version="1.0">

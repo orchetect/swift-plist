@@ -1,7 +1,7 @@
 //
 //  ArrayRootBasicValues.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 // swiftformat:options --wrapcollections preserve
@@ -29,7 +29,7 @@ extension kSamplePList.ArrayRootBasicValues {
             </array>
             </plist>
             """
-        
+
         static func plist() throws -> ConcretePList {
             let data = try XCTUnwrap(raw.data(using: .utf8))
             return try ConcretePList(data: data)
@@ -41,6 +41,8 @@ extension kSamplePList.ArrayRootBasicValues {
 
 extension kSamplePList.ArrayRootBasicValues {
     enum Binary {
+        // swiftformat:options --wrap-collections preserve
+        // swiftformat:options --allow-partial-wrapping true
         static let raw: [UInt8] = [
             0x62, 0x70, 0x6C, 0x69, 0x73, 0x74, 0x30, 0x30,
             0xA2, 0x01, 0x02, 0x58, 0x41, 0x20, 0x73, 0x74,
@@ -51,6 +53,8 @@ extension kSamplePList.ArrayRootBasicValues {
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x16
         ]
+        // swiftformat:options --wrap-collections before-first
+        // swiftformat:options --allow-partial-wrapping false
 
         static func plist() throws -> ConcretePList {
             let data = Data(raw)
@@ -65,7 +69,7 @@ extension kSamplePList.ArrayRootBasicValues {
     static func verify(matches pl: ConcretePList) {
         // sample plist root array has 9 values
         XCTAssertEqual(pl.storage.count, 2)
-        
+
         XCTAssertEqual(pl.storage[0] as? String, "A string")
         XCTAssertEqual(pl.storage[1] as? Int, 123)
     }

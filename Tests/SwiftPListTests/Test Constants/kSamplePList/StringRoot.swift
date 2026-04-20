@@ -1,7 +1,7 @@
 //
 //  StringRoot.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 // swiftformat:options --wrapcollections preserve
@@ -26,7 +26,7 @@ extension kSamplePList.StringRoot {
             <string>Just a string</string>
             </plist>
             """
-        
+
         static func plist() throws -> ConcretePList {
             let data = try XCTUnwrap(raw.data(using: .utf8))
             return try ConcretePList(data: data)
@@ -38,6 +38,8 @@ extension kSamplePList.StringRoot {
 
 extension kSamplePList.StringRoot {
     enum Binary {
+        // swiftformat:options --wrap-collections preserve
+        // swiftformat:options --allow-partial-wrapping true
         static let raw: [UInt8] = [
             0x62, 0x70, 0x6C, 0x69, 0x73, 0x74, 0x30, 0x30,
             0x5D, 0x4A, 0x75, 0x73, 0x74, 0x20, 0x61, 0x20,
@@ -47,6 +49,8 @@ extension kSamplePList.StringRoot {
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x16
         ]
+        // swiftformat:options --wrap-collections before-first
+        // swiftformat:options --allow-partial-wrapping false
 
         static func plist() throws -> ConcretePList {
             let data = Data(raw)

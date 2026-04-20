@@ -1,7 +1,7 @@
 //
 //  PListProtocol init.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -11,30 +11,30 @@ extension PListProtocol {
         let fileContents = try readFile(path: path)
         try self.init(data: fileContents)
     }
-    
+
     public init(url: URL) throws {
         let fileContents = try readFile(url: url)
         try self.init(data: fileContents)
     }
-    
+
     public init(xml string: String) throws {
         guard let data = string.data(using: .utf8) else {
             throw PListLoadError.formatNotExpected
         }
-        
+
         try self.init(data: data)
     }
-    
+
     public init(data: Data) throws {
         self.init()
-        
+
         let deserialized = try deserialize(plist: data)
         self.init(
             root: deserialized.plistRoot,
             format: deserialized.format
         )
     }
-    
+
     /// Instantiate a PList object by providing its root element, optionally specifying format.
     public init(root: Root, format: PListFormat = .xml) {
         self.init(format: format)
@@ -57,10 +57,10 @@ extension PListProtocol {
         guard let converted = convertToPListValue(from: root) else {
             throw PListLoadError.unhandledType
         }
-        
+
         try self.init(pListValue: converted, format: format)
     }
-    
+
     /// Internal helper
     init(
         pListValue root: PListValue,

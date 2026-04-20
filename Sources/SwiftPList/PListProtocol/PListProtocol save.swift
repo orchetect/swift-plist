@@ -1,7 +1,7 @@
 //
 //  PListProtocol save.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -20,10 +20,10 @@ extension PListProtocol {
         else {
             throw nsError("OutputStream could not be created.")
         }
-        
+
         try save(to: outputStream, format: format)
     }
-    
+
     /// Save the PList file to disk, overwriting without confirmation.
     ///
     /// - Parameters:
@@ -37,21 +37,21 @@ extension PListProtocol {
         else {
             throw nsError("OutputStream could not be created.")
         }
-        
+
         try save(to: outputStream, format: format)
     }
-    
+
     func save(
         to outputStream: OutputStream,
         format: PListFormat? = nil
     ) throws {
         let fileFormat = format ?? self.format
-        
+
         outputStream.open()
-        
+
         // Apple Docs: "Currently unused. Set to 0."
         let opts = PropertyListSerialization.WriteOptions()
-        
+
         var err: NSError?
         let result = PropertyListSerialization.writePropertyList(
             storage as Any,
@@ -60,14 +60,14 @@ extension PListProtocol {
             options: opts,
             error: &err
         )
-        
+
         outputStream.close()
-        
+
         // number of bytes written; 0 indicates an error occurred
         if result == 0 {
             throw err ?? nsError("Unknown error.")
         }
-        
+
         if err != nil {
             throw err!
         }

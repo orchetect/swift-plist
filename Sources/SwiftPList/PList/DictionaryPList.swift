@@ -1,7 +1,7 @@
 //
 //  DictionaryPList.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -27,7 +27,7 @@ extension DictionaryPList {
         get { _createIntermediateDictionaries }
         set { _createIntermediateDictionaries = newValue }
     }
-    
+
     /// Functional nesting dictionary tree classes for clean syntax.
     public var root: PListNode.Root {
         // Create and return a new class every time this property is accessed, to avoid storing an
@@ -52,7 +52,7 @@ extension DictionaryPList {
         guard let converted = root.convertedToPListDictionary() else {
             throw PListLoadError.formatNotExpected
         }
-        
+
         self.init(root: converted, format: format)
     }
 }

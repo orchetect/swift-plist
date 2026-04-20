@@ -1,7 +1,7 @@
 //
 //  PList.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -35,32 +35,32 @@ import Foundation
 /// - Note: ``DictionaryPList`` is the most common plist root type and is recommended.
 public final class PList<Root: PListValue>: PListProtocol, NSCopying {
     // MARK: - PListProtocol
-    
+
     public var format: PListFormat
     public var storage: Root = .defaultPListValue()
-    
+
     // (this is exposed only on PList<PListDictionary> by way of computed property)
     var _createIntermediateDictionaries: Bool = false
-    
+
     // MARK: - init
-    
+
     public init() {
         format = .xml
     }
-    
+
     public init(format: PListFormat) {
         self.format = format
     }
-    
+
     // MARK: - NSCopying
-    
+
     public func copy(with zone: NSZone? = nil) -> Any {
         // copy the class including data and properties
-        
+
         let copy = Self(root: storage, format: format)
-        
+
         copy.format = format
-        
+
         return copy
     }
 }

@@ -1,7 +1,7 @@
 //
 //  RawPListArray.swift
 //  swift-plist • https://github.com/orchetect/swift-plist
-//  © 2020-2025 Steffan Andrews • Licensed under MIT License
+//  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
 import Foundation
@@ -15,16 +15,16 @@ extension RawPListArray {
     /// Function to recursively translate a raw plist array to a Swift-friendly typed array.
     public func convertedToPListArray() -> PListArray? {
         // translate to Swift-friendly types
-        
+
         var newArray: PListArray = []
-        
+
         for element in self {
             guard let typedValue = convertToPListValue(from: element)
             else { return nil }
-            
+
             newArray.append(typedValue)
         }
-        
+
         return newArray
     }
 }
