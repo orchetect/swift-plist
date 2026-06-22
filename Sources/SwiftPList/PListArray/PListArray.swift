@@ -1,6 +1,6 @@
 //
 //  PListArray.swift
-//  swift-plist • https://github.com/orchetect/swift-plist
+//  SwiftPList • https://github.com/orchetect/swift-plist
 //  © 2026 Steffan Andrews • Licensed under MIT License
 //
 
