@@ -1,4 +1,4 @@
-# swift-plist
+# SwiftPList
 
 [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2Fswift-plist%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/orchetect/swift-plist) [![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Forchetect%2Fswift-plist%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/orchetect/swift-plist) [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/orchetect/swift-plist/blob/main/LICENSE)
 
@@ -12,7 +12,7 @@ The challenges that Apple's standard `PropertyListSerialization` presents:
 2. **Root-level dictionary access only**, making traversal of nested dictionaries very cumbersome
 3. **Deals in NS value types** which is not very Swifty and requires extra boilerplate at every interaction
 
-swift-plist solves these issues by:
+SwiftPList solves these issues by:
 
 1. Acting as a **safe and convenient** wrapper for `PropertyListSerialization`
 2. Providing **clean functional syntax** for
@@ -60,7 +60,7 @@ Coded by a bunch of 🐹 hamsters in a trenchcoat that calls itself [@orchetect]
 
 ## License
 
-Licensed under the MIT license. See [LICENSE](https://github.com/orchetect/swift-plist/blob/master/LICENSE) for details.
+Licensed under the MIT license. See [LICENSE](https://github.com/orchetect/swift-plist/blob/main/LICENSE) for details.
 
 ## Community & Support
 
